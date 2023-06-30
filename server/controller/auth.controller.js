@@ -1,6 +1,18 @@
+import { createUser } from "../services/auth.services.js";
+
 export const register = async (req, res, next) => {
   try {
-    res.send(req.body);
+    const { name, email, password, picture, status } = req.body;
+
+    const newUser = await createUser({
+      name,
+      email,
+      password,
+      picture,
+      status,
+    });
+
+    res.json(newUser);
   } catch (error) {
     next(error);
   }
