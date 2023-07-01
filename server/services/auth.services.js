@@ -1,5 +1,6 @@
 import createHttpError from "http-errors";
 import validator from "validator";
+import bcrypt from "bcrypt";
 import { UserModel } from "../model/index.js";
 
 //env variables
@@ -69,6 +70,24 @@ export const createUser = async (userData) => {
     status: status || DEFAULT_STATUS,
     password,
   }).save();
+
+  return user;
+};
+
+export const signUser = async (email, password) => {
+  const user = await UserModel.findOne({ email: email.toLowerCase() });
+
+  // check if user
+  if (!user) {
+    throw createHttpError.NotFound("Invalid Credentials");
+  }
+
+  //compare password
+  let passwordCompare = await bcrypt.compare(password, user.password);
+
+  if (!passwordCompare) {
+    throw createHttpError.NotFound("Invalid Credentials");
+  }
 
   return user;
 };
