@@ -1,7 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { PulseLoader } from "react-spinners";
+
 import { signUpSchema } from "../../utils/validations";
+import AuthInput from "./AuthInput";
 
 const RegisterForm = () => {
   const {
@@ -15,8 +20,7 @@ const RegisterForm = () => {
 
   const onSubmit = (data) => console.log("first", data);
 
-  console.log("wat", watch());
-  console.log("error", errors);
+  const { state } = useSelector((state) => state.user);
 
   return (
     <div className="h-screen w-full flex items-center justify-center overflow-hidden">
@@ -29,8 +33,54 @@ const RegisterForm = () => {
         </div>
         {/* forom */}
         <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-6">
-          <input type="text" {...register("name")} />
-          <button type="submit">Submit</button>
+          <AuthInput
+            name="name"
+            type="text"
+            placeholder="Name"
+            register={register}
+            error={errors?.name?.message}
+          />
+          <AuthInput
+            name="email"
+            type="email"
+            placeholder="Email Address"
+            register={register}
+            error={errors?.email?.message}
+          />
+          <AuthInput
+            name="status"
+            type="text"
+            placeholder="Status"
+            register={register}
+            error={errors?.status?.message}
+          />
+          <AuthInput
+            name="password"
+            type="password"
+            placeholder="Password"
+            register={register}
+            error={errors?.password?.message}
+          />
+          <button
+            className="w-full flex justify-center bg-green_1 text-gray-100 p-4 rounded-full tracking-wide 
+            font-semibold focus:outline-none hover:bg-green_2 shadow-lg cursor-pointer transition ease-in duration-75"
+            type="submit"
+          >
+            {state === "loading" ? (
+              <PulseLoader color="#ffff" size={16} />
+            ) : (
+              "Signup"
+            )}
+          </button>
+          <p className="flex flex-col items-center justify-center mt-10 text-center text-md dark:text-dark_text_1">
+            <span>have an account?</span>
+            <Link
+              to="/login"
+              className="hover:underline cursor-pointer transition ease duration-300"
+            >
+              Sign in
+            </Link>
+          </p>
         </form>
       </div>
     </div>
