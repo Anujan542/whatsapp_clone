@@ -4,8 +4,7 @@ import { logout } from "../features/userSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => ({ ...state }));
-  console.log(user);
+
   return (
     <div>
       <div>

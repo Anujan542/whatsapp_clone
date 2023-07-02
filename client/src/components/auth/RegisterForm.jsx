@@ -16,11 +16,11 @@ const RegisterForm = () => {
   const navigate = useNavigate();
   const [picture, setPicture] = useState("");
   const [readablePicture, setReadablePicture] = useState("");
+  const { user } = useSelector((state) => ({ ...state }));
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(signUpSchema),
@@ -59,8 +59,6 @@ const RegisterForm = () => {
     return data;
   };
 
-  const { user } = useSelector((state) => ({ ...state }));
-  console.log(user.status);
   return (
     <div className="min-h-screen w-full flex items-center justify-center overflow-hidden">
       {/* container */}
