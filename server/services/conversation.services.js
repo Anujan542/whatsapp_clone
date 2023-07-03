@@ -30,9 +30,9 @@ export const doesConversationExist = async (sender_id, receiver_id) => {
 export const createConversation = async (data) => {
   const newConvo = await ConversationModel.create(data);
 
-  if (!newConvo)
+  if (!newConvo) {
     throw createHttpError.BadRequest("Oppp..! something went wrong!");
-
+  }
   return newConvo;
 };
 
@@ -40,13 +40,11 @@ export const createConversation = async (data) => {
 export const populateConversation = async (id, fieldToAdd, fieldToRemove) => {
   const convoDetails = await ConversationModel.findOne({
     _id: id,
-    fieldToAdd,
-    fieldToRemove,
-  });
+  }).populate(fieldToAdd, fieldToRemove);
 
-  if (!convoDetails)
+  if (!convoDetails) {
     throw createHttpError.BadRequest("Ooop..!Something went wrong!");
-
+  }
   return convoDetails;
 };
 
