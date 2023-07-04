@@ -1,4 +1,5 @@
 import React from "react";
+import { dateHandler } from "../../../utils/date";
 
 const Conversation = ({ convo }) => {
   return (
@@ -31,7 +32,15 @@ const Conversation = ({ convo }) => {
             </div>
           </div>
         </div>
+        {/* right */}
+        <div className="flex flex-col gap-y-4 items-end text-xs">
+          <span className="dark:text-dark_text_2">
+            {dateHandler(convo.latestMessage.createdAt)}
+          </span>
+        </div>
       </div>
+      {/* border */}
+      <div className="ml-16 border-b dark:border-b-dark_border_1"></div>
     </li>
   );
 };
