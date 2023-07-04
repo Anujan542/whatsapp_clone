@@ -6,7 +6,7 @@ const CONVERSATION_ENDPOINT = `${process.env.REACT_APP_API_ENDPOINT}/conversatio
 const initialState = {
   status: "",
   error: "",
-  conversation: [],
+  conversations: [],
   activeConversation: {},
   notifications: [],
 };
@@ -44,7 +44,7 @@ export const chatSlice = createSlice({
       })
       .addCase(getConversation.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.conversation = action.payload;
+        state.conversations = action.payload;
       })
       .addCase(getConversation.rejected, (state, action) => {
         state.status = "failed";
