@@ -28,6 +28,7 @@
   .convo {
     height: calc(100vh - 220px);
     overflow-y: auto;
+    overflow-x: hidden;
   }
 
   /* ----Animations---- */
