@@ -3,6 +3,7 @@ import Sidebar from "../components/sidebar/Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { getConversation } from "../features/chatSlice";
 import WhatsappHome from "../components/chat/WhatsappHome/WhatsappHome";
+import ChatContainer from "../components/chat/ChatContainer";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Home = () => {
       {/* container */}
       <div className="container h-screen flex">
         <Sidebar />
-        {activeConversation._id ? "home" : <WhatsappHome />}
+        {activeConversation._id ? <ChatContainer /> : <WhatsappHome />}
       </div>
     </div>
   );

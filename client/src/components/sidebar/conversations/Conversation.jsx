@@ -3,6 +3,7 @@ import { dateHandler } from "../../../utils/date";
 import { useDispatch, useSelector } from "react-redux";
 import { getConversationId } from "../../../utils/chat";
 import { open_create_conversation } from "../../../features/chatSlice";
+import { Capitalize } from "../../../utils/string";
 
 const Conversation = ({ convo }) => {
   const dispatch = useDispatch();
@@ -37,7 +38,7 @@ const Conversation = ({ convo }) => {
           <div className="w-full flex flex-col">
             {/* name */}
             <h1 className="font-bold flex items-center gap-x-2">
-              {convo.name}
+              {Capitalize(convo.name)}
             </h1>
             {/* message */}
             <div>
