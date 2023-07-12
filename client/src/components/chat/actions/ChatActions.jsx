@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import EmojiPicker from "./EmojiPicker";
+import Emoji from "./EmojiPicker";
 import Attachments from "./Attachments";
 import Input from "./Input";
 import { CircleLoader } from "react-spinners";
@@ -33,7 +33,7 @@ const ChatActions = () => {
       <div className="w-full flex items-center gap-x-2">
         {/* Emoji and attachments */}
         <ul className="flex gap-x-2">
-          <EmojiPicker />
+          <Emoji />
           <Attachments />
         </ul>
         {/* input */}

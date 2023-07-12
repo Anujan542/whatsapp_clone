@@ -8,7 +8,7 @@ import ChatActions from "./actions/ChatActions";
 const ChatContainer = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.user);
-  const { activeConversation, messages } = useSelector((state) => state.chat);
+  const { activeConversation } = useSelector((state) => state.chat);
 
   const values = {
     access_token: user.access_token,
